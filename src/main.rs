@@ -1,5 +1,5 @@
 use clap::{App, Arg};
-use std::io;
+use std::io::stdin;
 
 fn main() {
     let matches = App::new("reg-calc")
@@ -71,6 +71,45 @@ fn calculate_register_parallel(reg: Vec<f64>) -> f64 {
     let inverse_reg: Vec<_> = reg.iter().map(|x| 1.0 / x).collect();
     let tmp_combind_reg: f64 = inverse_reg.iter().sum();
     1.0 / tmp_combind_reg
+}
+
+fn shell_loop() -> Vec<String> {
+    let mut register_vec = Vec::new();
+
+    while let Some(line) = shell_read_line() {
+        let action = match shell_parse_line(&line) {
+            None => break,
+            Some(action) => action,
+        };
+        register_vec.push(action);
+    }
+    register_vec
+}
+
+fn shell_parse_line(line: &str) -> Option<String> {
+    match line.is_empty() {
+        true => None,
+        false => Some(line.to_string()),
+    }
+}
+
+fn shell_read_line() -> Option<String> {
+    let mut result = String::new();
+    match stdin().read_line(&mut result) {
+        Ok(size) => {
+            if size == 0 {
+                None
+            } else {
+                // 改行を削除
+                let result = result.trim_end();
+                Some(result.to_string())
+            }
+        }
+        Err(e) => {
+            eprintln!("{}", e);
+            None
+        }
+    }
 }
 
 #[cfg(test)]
