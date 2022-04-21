@@ -16,7 +16,6 @@ fn main() {
         .get_matches();
 
     match matches.value_of("calc_mode") {
-        //Some(mode) => println!("Mode : {}", mode),
         Some(mode) => {
             if mode == "s" {
                 println!("Mode : Serial Calc")
@@ -34,15 +33,22 @@ fn main() {
     let register_vec: Vec<f64> = vec![100.0, 100.0];
     let result = calculate_register_parallel(register_vec);
     println!("Combind Parallel register[ohm]: {}", result);
+
+    let insert = input();
+    println!("insert strings:{insert}");
 }
 
-/// Ok => f64
-/// Enter => input terminate
-/// Err => input terminate
 fn input() -> f64 {
-    //print!("{}", insert);
     let mut s = String::new();
     std::io::stdin().read_line(&mut s).expect("入力エラー");
+
+    return s.trim().parse().expect("convert error");
+}
+
+fn row_input() -> String {
+    let mut s = String::new();
+
+    std::io::stdin().read_line(&mut s).expect("insert error");
 
     return s.trim().parse().expect("convert error");
 }
@@ -54,15 +60,6 @@ fn create_vector_register() -> Vec<f64> {
         register_vec.push(s);
     }
 
-    //    loop {
-    //      let s = input();
-    //      match s.parse::<f64>() {
-    //          Ok(s) => {
-    //              register_vec.push(s);
-    //        }
-    //       Err(_) => break,
-    //  }
-    //    }
     register_vec
 }
 
