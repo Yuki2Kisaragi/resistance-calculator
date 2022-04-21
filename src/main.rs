@@ -23,9 +23,22 @@ fn main() {
                 println!("Mode : Parallel Calc")
             }
         }
-        None => println!("Please Enter Mode "),
+        None => {
+            print!("Which calculation mode do you want to run, in Parallel(p) or Series(s)? > ")
+        }
     }
+}
 
+fn select_calc_mode() -> String {
+    loop {
+        let mut mode = String::new();
+        std::io::stdin().read_line(&mut mode).expect("入力エラー");
+
+        return mode.trim().parse().expect("convert error");
+    }
+}
+
+fn insert_test() {
     let register_vec: Vec<f64> = vec![200.0, 100.0, 300.5];
     let result = calculate_register_serial(register_vec);
     println!("combind register[ohm]: {}", result);
