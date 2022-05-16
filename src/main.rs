@@ -1,6 +1,9 @@
 use clap::{App, Arg};
 use std::io::stdin;
 
+mod cli;
+mod io_main;
+
 fn main() {
     let matches = App::new("reg-calc")
         .version("0.1.0")

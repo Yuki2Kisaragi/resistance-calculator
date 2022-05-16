@@ -1,4 +1,4 @@
-# Rusty CLI Application Tool : Registance-Calculator
+# [WIP] Rusty CLI Application Tool : Registance-Calculator
 
 ## 概要
 CLI上で抵抗値の計算ができます。
