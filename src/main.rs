@@ -1,7 +1,7 @@
 use clap::{App, Arg};
 use std::io::stdin;
+use std::io::{stdout, Write};
 
-mod cli;
 mod io_main;
 
 fn main() {
@@ -17,7 +17,7 @@ fn main() {
                 .required(false),
         )
         .get_matches();
-
+    let mut calc_mode: String = "".to_string();
     match matches.value_of("calc_mode") {
         Some(mode) => {
             if mode == "s" {
@@ -27,8 +27,18 @@ fn main() {
             }
         }
         None => {
-            print!("Which calculation mode do you want to run, in Parallel(p) or Series(s)? > ")
+            print!("Which calculation mode do you want to run, in Parallel(p) or Series(s)? > ");
+            stdout().flush().unwrap();
+            calc_mode = select_calc_mode();
+            //          shell_loop();
         }
+    }
+
+    if calc_mode == "p" {
+        println!("Mode : Parallel Calc")
+    }
+    if calc_mode == "s" {
+        println!("Mode : Serial Calc");
     }
 }
 

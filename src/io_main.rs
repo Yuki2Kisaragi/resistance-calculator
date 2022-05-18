@@ -13,13 +13,6 @@ enum SIprefix {
 }
 
 pub fn run() {
-    // println!("Please Insert your name");
-    // let mut line = String::new();
-    // std::io::stdin().read_line(&mut line).ok();
-    // println!("line:{line}");
-    // let name = line.trim().to_string();
-    // println!("name:{name}");
-
     input_string_search();
     input_resistance();
 }
