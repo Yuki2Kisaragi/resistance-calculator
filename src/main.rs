@@ -21,9 +21,9 @@ fn main() {
     match matches.value_of("calc_mode") {
         Some(mode) => {
             if mode == "s" {
-                println!("Mode : Serial Calc")
+                calc_mode = mode.to_string();
             } else if mode == "p" {
-                println!("Mode : Parallel Calc")
+                calc_mode = mode.to_string();
             }
         }
         None => {
@@ -67,14 +67,6 @@ fn insert_test() {
 fn input() -> f64 {
     let mut s = String::new();
     std::io::stdin().read_line(&mut s).expect("入力エラー");
-
-    return s.trim().parse().expect("convert error");
-}
-
-fn row_input() -> String {
-    let mut s = String::new();
-
-    std::io::stdin().read_line(&mut s).expect("insert error");
 
     return s.trim().parse().expect("convert error");
 }
