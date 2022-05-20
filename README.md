@@ -9,16 +9,12 @@ CLI上で抵抗値の計算ができます。
 
 ## Install
 
-### Cargo Install
-```sh
-$ cargo install reg-calc
-```
-
 ### Souce Build
 ```sh
 $ git clone hogehoge/reg-calc
 $ cd reg-calc
-$ cargo run
+$ cargo build --release
+$ 
 ```
 
 
