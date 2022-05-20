@@ -12,7 +12,7 @@ CLI上で抵抗値の計算ができます。
 ### Souce Build
 
 ```sh
-$ git clone hogehoge/reg-calc
+$ git clone https://github.com/Yuki2Kisaragi/resistance-calculator.git
 $ cd reg-calc
 $ cargo build --release
 $ cp ./target/release/reg-calc .
