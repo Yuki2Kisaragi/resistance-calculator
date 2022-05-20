@@ -12,12 +12,12 @@ CLI上で抵抗値の計算ができます。
 ### Souce Build
 
 ```sh
-$ git clone https://github.com/Yuki2Kisaragi/resistance-calculator.git
-$ cd reg-calc
-$ cargo build --release
-$ cp ./target/release/reg-calc .
-$ alias reg-calc=./reg-calc
-$ reg-calc
+git clone https://github.com/Yuki2Kisaragi/resistance-calculator.git
+cd reg-calc
+cargo build --release
+cp ./target/release/reg-calc .
+alias reg-calc=./reg-calc
+reg-calc
 ```
 
 
