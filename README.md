@@ -58,3 +58,14 @@ R2>100
 R3>
 Combind Parallel resistance[ohm]: 50
 ```
+
+```sh
+$ reg-calc -- s
+Mode : Parallel Calculation
+R1>100
+
+R2>100
+
+R3>
+Combind Parallel resistance[ohm]: 200
+```
