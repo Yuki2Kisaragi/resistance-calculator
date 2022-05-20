@@ -49,7 +49,7 @@ Combind Serial resistance[ohm]: 200
 ```
 
 ```sh
-$ reg-calc -- p
+$ reg-calc p
 Mode : Parallel Calculation
 R1>100
 
@@ -60,7 +60,7 @@ Combind Parallel resistance[ohm]: 50
 ```
 
 ```sh
-$ reg-calc -- s
+$ reg-calc s
 Mode : Parallel Calculation
 R1>100
 
