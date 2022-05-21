@@ -1,3 +1,4 @@
+use regex::Regex;
 use std;
 
 enum SIprefix {
@@ -12,9 +13,19 @@ enum SIprefix {
     Tera,
 }
 
+struct ResistanceValue {
+    str_resistance: String,
+    real_resistance: f64,
+    si_prefix: SIprefix,
+}
+
 pub fn run() {
-    input_string_search();
-    input_resistance();
+    //input_string_search();
+    //input_resistance();
+
+    let re = Regex::new(r"^[1-9][0-9]*[pnumkMGT]?$").unwrap();
+    println!("{:?}", re.is_match("2000u"));
+    println!("{:?}", re.is_match("10"));
 }
 
 pub fn input_resistance() {
@@ -134,6 +145,4 @@ pub fn input_string_search() {
         SIprefix::Tera => println!("Tera"),
         _ => println!("None"),
     }
-
-    //  let n: i32 = number.trim().parse().ok().unwrap();
 }

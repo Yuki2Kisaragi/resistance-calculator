@@ -17,35 +17,37 @@ fn main() {
                 .required(false),
         )
         .get_matches();
-    let mut calc_mode: String = "".to_string();
-    match matches.value_of("calc_mode") {
-        Some(mode) => {
-            if mode == "s" {
-                calc_mode = mode.to_string();
-            } else if mode == "p" {
-                calc_mode = mode.to_string();
-            }
-        }
-        None => {
-            print!("Which calculation mode do you want to run, in Parallel(p) or Series(s)? > ");
-            stdout().flush().unwrap();
-            calc_mode = select_calc_mode();
-        }
-    }
+    io_main::run();
 
-    if calc_mode == "p" {
-        println!("Mode : Parallel Calculation");
-        let register_vec: Vec<f64> = input_register_loop();
-        let result = calculate_register_parallel(register_vec);
-        println!("Combind Parallel resistance[ohm]: {}", result);
-    }
-
-    if calc_mode == "s" {
-        println!("Mode : Serial Calculation");
-        let register_vec: Vec<f64> = input_register_loop();
-        let result = calculate_register_serial(register_vec);
-        println!("Combind Serial resistance[ohm]: {}", result);
-    }
+    //    let mut calc_mode: String = "".to_string();
+    //    match matches.value_of("calc_mode") {
+    //        Some(mode) => {
+    //            if mode == "s" {
+    //                calc_mode = mode.to_string();
+    //            } else if mode == "p" {
+    //                calc_mode = mode.to_string();
+    //            }
+    //        }
+    //        None => {
+    //            print!("Which calculation mode do you want to run, in Parallel(p) or Series(s)? > ");
+    //            stdout().flush().unwrap();
+    //            calc_mode = select_calc_mode();
+    //        }
+    //    }
+    //
+    //    if calc_mode == "p" {
+    //        println!("Mode : Parallel Calculation");
+    //        let register_vec: Vec<f64> = input_register_loop();
+    //        let result = calculate_register_parallel(register_vec);
+    //        println!("Combind Parallel resistance[ohm]: {}", result);
+    //    }
+    //
+    //    if calc_mode == "s" {
+    //        println!("Mode : Serial Calculation");
+    //        let register_vec: Vec<f64> = input_register_loop();
+    //        let result = calculate_register_serial(register_vec);
+    //        println!("Combind Serial resistance[ohm]: {}", result);
+    //    }
 }
 
 fn input_register_loop() -> Vec<f64> {
