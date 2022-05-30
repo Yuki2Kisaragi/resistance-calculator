@@ -1,5 +1,6 @@
 use regex::Regex;
-use std;
+use std::io::stdin;
+use std::io::{stdout, Write};
 
 enum SIprefix {
     None = 0,
@@ -18,6 +19,42 @@ struct ResistanceValue {
     real_resistance: f64,
     si_prefix: SIprefix,
 }
+impl ResistanceValue {
+    fn _si_prefix_search(&mut self) -> &Self {
+        if self.str_resistance.contains("p") {
+            self.si_prefix = SIprefix::Pico;
+        }
+        if self.str_resistance.contains("n") {
+            self.si_prefix = SIprefix::Nano;
+        }
+        if self.str_resistance.contains("u") {
+            self.si_prefix = SIprefix::Micro;
+        }
+        if self.str_resistance.contains("m") {
+            self.si_prefix = SIprefix::Milli;
+        }
+        if self.str_resistance.contains("k") {
+            self.si_prefix = SIprefix::Kilo;
+        }
+        if self.str_resistance.contains("M") {
+            self.si_prefix = SIprefix::Mega;
+        }
+        if self.str_resistance.contains("G") {
+            self.si_prefix = SIprefix::Giga;
+        }
+        if self.str_resistance.contains("T") {
+            self.si_prefix = SIprefix::Tera;
+        }
+
+        self
+    }
+    fn _set_real_resistance(&mut self) -> &Self {
+        //TODO
+        // 1) 文字(SI接頭辞)と数字を分割する
+        // 2) 数字 * SI接頭辞の積をself.real_resistanceに拘束する
+        self
+    }
+}
 
 pub fn run() {
     //input_string_search();
@@ -30,99 +67,19 @@ pub fn run() {
 
 pub fn input_resistance() {
     println!("Enter 'input_resistance' func");
-
     println!("Please Insert Number");
+    let mut num_of_loop = 1;
+    loop {
+        print!("R{} >", num_of_loop);
+        stdout().flush().unwrap();
+        num_of_loop += 1;
+    }
+
     let mut number = String::new();
-    std::io::stdin().read_line(&mut number).ok();
-    //let n: i32 = number.trim().parse().ok().unwrap();
+    stdin().read_line(&mut number).ok();
 
-    let n: Result<i32, _> = number.trim().parse();
-
-    match n {
-        Ok(v) => {
-            println!("input number :{:?}", v);
-            println!("read ok");
-        }
-
-        Err(_) => println!("read ng"),
-    }
-
-    println!("input number :{:?}", n);
-}
-
-fn _search_si_prefix(number: String) -> SIprefix {
-    let mut si_prefix: SIprefix = SIprefix::None;
-
-    if number.contains("p") {
-        si_prefix = SIprefix::Pico;
-    }
-    if number.contains("n") {
-        si_prefix = SIprefix::Nano;
-    }
-    if number.contains("u") {
-        si_prefix = SIprefix::Micro;
-    }
-    if number.contains("m") {
-        si_prefix = SIprefix::Milli;
-    }
-    if number.contains("k") {
-        si_prefix = SIprefix::Kilo;
-    }
-    if number.contains("M") {
-        si_prefix = SIprefix::Mega;
-    }
-    if number.contains("G") {
-        si_prefix = SIprefix::Giga;
-    }
-    if number.contains("T") {
-        si_prefix = SIprefix::Tera;
-    }
-
-    si_prefix
-}
-
-fn _verify_counter_of_si_prefix(mut counter: u8) -> bool {
-    counter += 1;
-
-    if counter > 1 {
-        // SI単位系文字が1つ以上ある
-        false
-    } else {
-        true
-    }
-}
-
-fn _search_si_prefix2(number: String) -> Option<SIprefix> {
-    let mut si_prefix: SIprefix = SIprefix::None;
-    let mut count_si_prefix: u8 = 0;
-
-    if number.contains("p") {
-        si_prefix = SIprefix::Pico;
-        _verify_counter_of_si_prefix(count_si_prefix);
-    }
-    if number.contains("n") {
-        si_prefix = SIprefix::Nano;
-    }
-    if number.contains("u") {
-        si_prefix = SIprefix::Micro;
-    }
-    if number.contains("m") {
-        si_prefix = SIprefix::Milli;
-    }
-    if number.contains("k") {
-        si_prefix = SIprefix::Kilo;
-    }
-    if number.contains("M") {
-        si_prefix = SIprefix::Mega;
-    }
-    if number.contains("G") {
-        si_prefix = SIprefix::Giga;
-    }
-    if number.contains("T") {
-        si_prefix = SIprefix::Tera;
-    }
-
-    Some(si_prefix)
+    //let n: Result<i32, _> = number.trim().parse();
+    //println!("input number :{:?}", n);
 }
 
 pub fn input_string_search() {
@@ -130,19 +87,15 @@ pub fn input_string_search() {
     println!("Please Insert Resistance(SI Prefix OK)");
 
     let mut number = String::new();
-    std::io::stdin().read_line(&mut number).ok();
+    stdin().read_line(&mut number).ok();
+}
 
-    let si_prefix = _search_si_prefix(number);
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    match si_prefix {
-        SIprefix::Pico => println!("Pico"),
-        SIprefix::Nano => println!("Nano"),
-        SIprefix::Micro => println!("Micro"),
-        SIprefix::Milli => println!("Milli"),
-        SIprefix::Kilo => println!("Kilo"),
-        SIprefix::Mega => println!("Mega"),
-        SIprefix::Giga => println!("Giga"),
-        SIprefix::Tera => println!("Tera"),
-        _ => println!("None"),
+    #[test]
+    fn test_regex_kiro() {
+        assert_eq!("a", "a");
     }
 }
