@@ -8,6 +8,7 @@ CLI上で抵抗値の計算ができます。
 * SI接頭辞の入力対応 [WIP]
 
 ## Install
+いずれCargoでインストールできるようにする予定です。
 
 ### Souce Build
 
