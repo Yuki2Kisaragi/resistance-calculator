@@ -1,5 +1,4 @@
-use std;
-
+#[allow(dead_code)]
 enum SIprefix {
     None = 0,
     Pico,
@@ -12,11 +11,13 @@ enum SIprefix {
     Tera,
 }
 
+#[allow(dead_code)]
 pub fn run() {
     input_string_search();
     input_resistance();
 }
 
+#[allow(dead_code)]
 pub fn input_resistance() {
     println!("Enter 'input_resistance' func");
 
@@ -83,7 +84,7 @@ fn _verify_counter_of_si_prefix(mut counter: u8) -> bool {
 
 fn _search_si_prefix2(number: String) -> Option<SIprefix> {
     let mut si_prefix: SIprefix = SIprefix::None;
-    let mut count_si_prefix: u8 = 0;
+    let count_si_prefix: u8 = 0;
 
     if number.contains("p") {
         si_prefix = SIprefix::Pico;
