@@ -1,37 +1,27 @@
-use clap::{App, Arg};
+use clap::Parser;
 use std::io::stdin;
 use std::io::{stdout, Write};
 
 mod io_main;
 
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Cli {
+    /// 計算モード: 直列(s)または並列(p)
+    #[arg(value_name = "MODE")]
+    calc_mode: Option<String>,
+}
+
 fn main() {
-    let matches = App::new("reg-calc")
-        .version("0.1.0")
-        .author("Masa-Hero")
-        .about("Resister Calculator")
-        .arg(
-            Arg::new("calc_mode")
-                .about("Select Calculation Pararell or Serial")
-                .value_name("MODE")
-                .index(1)
-                .required(false),
-        )
-        .get_matches();
-    let mut calc_mode: String = "".to_string();
-    match matches.value_of("calc_mode") {
-        Some(mode) => {
-            if mode == "s" {
-                calc_mode = mode.to_string();
-            } else if mode == "p" {
-                calc_mode = mode.to_string();
-            }
-        }
-        None => {
+    let cli = Cli::parse();
+    let calc_mode = match cli.calc_mode {
+        Some(mode) if mode == "s" || mode == "p" => mode,
+        _ => {
             print!("Which calculation mode do you want to run, in Parallel(p) or Series(s)? > ");
             stdout().flush().unwrap();
-            calc_mode = select_calc_mode();
+            select_calc_mode()
         }
-    }
+    };
 
     if calc_mode == "p" {
         println!("Mode : Parallel Calculation");
